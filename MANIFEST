@@ -17,4 +17,3 @@ MANIFEST			This list of files
 META.yml
 README
 t/01use.t
-t/lib/MXSimpleConfigTest.pm
