@@ -30,6 +30,9 @@ SYNOPSIS
       use Moose;
       with 'MooseX::SomeSpecificConfigRole';
 
+      # optionally, default the configfile:
+      has +configfile ( default => '/tmp/foo.yaml' );
+
       # ... insert your stuff here ...
 
       ########
@@ -48,6 +51,9 @@ DESCRIPTION
     "new_with_config", and requires that concrete roles derived from it
     implement the class method "get_config_from_file".
 
+    Attributes specified directly as arguments to "new_with_config"
+    supercede those in the configfile.
+
     MooseX::Getopt knows about this abstract role, and will use it if
     available to load attributes from the file specified by the commandline
     flag "--configfile" during its normal "new_with_options".
@@ -55,7 +61,11 @@ DESCRIPTION
 Attributes
   configfile
     This is a Path::Class::File object which can be coerced from a regular
-    pathname string. This is the file your attributes are loaded from.
+    pathname string. This is the file your attributes are loaded from. You
+    can add a default configfile in the class using the role and it will be
+    honored at the appropriate time:
+
+      has +configfile ( default => '/etc/myapp.yaml' );
 
 Class Methods
   new_with_config
@@ -70,7 +80,8 @@ Class Methods
   get_config_from_file
     This class method is not implemented in this role, but it is required of
     all subroles. Its two arguments are the classname and the configfile,
-    and it is expected to return a hashref of arguments to pass to "new()".
+    and it is expected to return a hashref of arguments to pass to "new()"
+    which are sourced from the configfile.
 
   meta
     The Moose meta stuff, included here because otherwise pod tests fail

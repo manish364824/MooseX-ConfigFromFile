@@ -3,7 +3,7 @@ package MooseX::ConfigFromFile;
 use Moose::Role;
 use MooseX::Types::Path::Class qw( File );
 
-our $VERSION   = '0.01';
+our $VERSION   = '0.02';
 
 requires 'get_config_from_file';
 
@@ -17,9 +17,20 @@ has configfile => (
 sub new_with_config {
     my ($class, %opts) = @_;
 
-    if($opts{configfile}) {
-        %opts = (%{$class->get_config_from_file($opts{configfile})}, %opts);
+    my $configfile;
+
+    if(defined $opts{configfile}) {
+        $configfile = $opts{configfile}
     }
+    else {
+        my $cfmeta = $class->meta->get_attribute('configfile');
+        $configfile = $cfmeta->default if $cfmeta->has_default;
+    }
+
+    if(defined $configfile) {
+        %opts = (%{$class->get_config_from_file($configfile)}, %opts);
+    }
+
     $class->new(%opts);
 }
 
@@ -62,6 +73,9 @@ MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a co
   use Moose;
   with 'MooseX::SomeSpecificConfigRole';
 
+  # optionally, default the configfile:
+  has +configfile ( default => '/tmp/foo.yaml' );
+
   # ... insert your stuff here ...
 
   ########
@@ -81,6 +95,9 @@ It declares an attribute C<configfile> and a class method C<new_with_config>,
 and requires that concrete roles derived from it implement the class method
 C<get_config_from_file>.
 
+Attributes specified directly as arguments to C<new_with_config> supercede those
+in the configfile.
+
 L<MooseX::Getopt> knows about this abstract role, and will use it if available
 to load attributes from the file specified by the commandline flag C<--configfile>
 during its normal C<new_with_options>.
@@ -90,7 +107,10 @@ during its normal C<new_with_options>.
 =head2 configfile
 
 This is a L<Path::Class::File> object which can be coerced from a regular pathname
-string.  This is the file your attributes are loaded from.
+string.  This is the file your attributes are loaded from.  You can add a default
+configfile in the class using the role and it will be honored at the appropriate time:
+
+  has +configfile ( default => '/etc/myapp.yaml' );
 
 =head1 Class Methods
 
@@ -108,7 +128,7 @@ Explicit arguments will overide anything set by the configfile.
 
 This class method is not implemented in this role, but it is required of all subroles.
 Its two arguments are the classname and the configfile, and it is expected to return
-a hashref of arguments to pass to C<new()>.
+a hashref of arguments to pass to C<new()> which are sourced from the configfile.
 
 =head2 meta
 
