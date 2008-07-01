@@ -5,6 +5,8 @@ use MooseX::Types::Path::Class qw( File );
 
 our $VERSION   = '0.02';
 
+use Carp qw(croak);
+
 requires 'get_config_from_file';
 
 has configfile => (
@@ -28,7 +30,13 @@ sub new_with_config {
     }
 
     if(defined $configfile) {
-        %opts = (%{$class->get_config_from_file($configfile)}, %opts);
+        my $hash = $class->get_config_from_file($configfile);
+
+        no warnings 'uninitialized';
+        croak "get_config_from_file($configfile) did not return a hash (got $hash)"
+            unless ref $hash eq 'HASH';
+
+        %opts = (%$hash, %opts);
     }
 
     $class->new(%opts);
