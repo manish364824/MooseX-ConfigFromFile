@@ -25,7 +25,7 @@ sub new_with_config {
         $configfile = $opts{configfile}
     }
     else {
-        my $cfmeta = $class->meta->get_attribute('configfile');
+        my $cfmeta = $class->meta->find_attribute_by_name('configfile');
         $configfile = $cfmeta->default if $cfmeta->has_default;
     }
 
