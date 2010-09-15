@@ -1,5 +1,8 @@
 Revision history for Perl extension MooseX::ConfigFromFile
 
+0.03 - ???
+    - Fix bug reported by Strayph in #moose with inheritance (perigrin)
+
 0.02 - Jan 23, 2008
     - Honor any default supplied for the configfile attribute
 
