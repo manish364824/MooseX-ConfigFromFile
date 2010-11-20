@@ -1,6 +1,8 @@
 Revision history for Perl extension MooseX::ConfigFromFile
 
 0.03 - ???
+    - The test suite now uses Test::Fatal instead of Test::Exception (Karen
+      Etheridge).
     - Fix bug reported by Strayph in #moose with inheritance (perigrin)
 
 0.02 - Jan 23, 2008

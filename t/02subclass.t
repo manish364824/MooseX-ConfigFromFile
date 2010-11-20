@@ -1,7 +1,7 @@
 #!/usr/bin/env perl 
 use strict;
 use Test::More;
-use Test::Exception;
+use Test::Fatal;
 {
     package A;
     use Moose;
@@ -17,6 +17,6 @@ use Test::Exception;
 }
 
 ok(B->does('MooseX::ConfigFromFile'), 'B does ConfigFromFile');
-lives_ok { B->new_with_config() } 'B->new_with_config lives';
+is(exception { B->new_with_config() }, undef, 'B->new_with_config lives');
 
 done_testing();

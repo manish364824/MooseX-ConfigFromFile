@@ -5,6 +5,7 @@ name 'MooseX-ConfigFromFile';
 all_from 'lib/MooseX/ConfigFromFile.pm';
 
 test_requires 'Test::More' => '0.42';
+test_requires 'Test::Fatal';
 
 requires 'Moose'                      => '0.35';
 requires 'MooseX::Types::Path::Class' => '0.04';
