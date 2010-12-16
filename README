@@ -31,7 +31,7 @@ SYNOPSIS
       with 'MooseX::SomeSpecificConfigRole';
 
       # optionally, default the configfile:
-      has +configfile ( default => '/tmp/foo.yaml' );
+      sub configfile { '/tmp/foo.yaml' }
 
       # ... insert your stuff here ...
 
@@ -67,6 +67,10 @@ Attributes
 
       has +configfile ( default => '/etc/myapp.yaml' );
 
+    Note that you can alternately just provide a "configfile" method which
+    returns the config file when called - this will be used in preference to
+    the default of the attribute.
+
 Class Methods
   new_with_config
     This is an alternate constructor, which knows to look for the
@@ -83,13 +87,18 @@ Class Methods
     and it is expected to return a hashref of arguments to pass to "new()"
     which are sourced from the configfile.
 
-  meta
-    The Moose meta stuff, included here because otherwise pod tests fail
-    sometimes
+COPYRIGHT
+    Copyright (c) 2007 - 2009 the MooseX::ConfigFromFile "AUTHOR" and
+    "CONTRIBUTORS" as listed below.
 
-BUGS
 AUTHOR
     Brandon L. Black, <blblack@gmail.com>
+
+CONTRIBUTORS
+    Tomas Doran "<bobtfish@bobtfish.net>" (current maintainer).
+    Karen Etheridge
+    Chris Prather
+    Zbigniew Lukasiak
 
 LICENSE
     This library is free software; you can redistribute it and/or modify it
