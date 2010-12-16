@@ -27,7 +27,7 @@ sub new_with_config {
     }
     else {
         my $cfmeta = $class->meta->find_attribute_by_name('configfile');
-        $configfile = try { $class->configfile };
+        $configfile = try { to_File($class->configfile) };
         $configfile ||= $cfmeta->default if $cfmeta->has_default;
     }
 
@@ -122,6 +122,10 @@ configfile in the class using the role and it will be honored at the appropriate
 
   has +configfile ( default => '/etc/myapp.yaml' );
 
+Note that you can alternately just provide a C<configfile> method which returns
+the config file when called - this will be used in preference to the default of
+the attribute.
+
 =head1 Class Methods
 
 =head2 new_with_config
@@ -140,15 +144,27 @@ This class method is not implemented in this role, but it is required of all sub
 Its two arguments are the classname and the configfile, and it is expected to return
 a hashref of arguments to pass to C<new()> which are sourced from the configfile.
 
-=head2 meta
+=head1 COPYRIGHT
 
-The Moose meta stuff, included here because otherwise pod tests fail sometimes
-
-=head1 BUGS
+Copyright (c) 2007 - 2009 the MooseX::ConfigFromFile "AUTHOR" and "CONTRIBUTORS" as listed below.
 
 =head1 AUTHOR
 
 Brandon L. Black, E<lt>blblack@gmail.comE<gt>
+
+=head1 CONTRIBUTORS
+
+=over
+
+=item Tomas Doran C<< <bobtfish@bobtfish.net> >> (current maintainer).
+
+=item Karen Etheridge
+
+=item Chris Prather
+
+=item Zbigniew Lukasiak
+
+=back
 
 =head1 LICENSE
 
