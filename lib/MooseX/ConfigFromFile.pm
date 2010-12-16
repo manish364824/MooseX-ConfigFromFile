@@ -6,7 +6,7 @@ use Try::Tiny qw/ try /;
 use Carp qw(croak);
 use namespace::autoclean;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 requires 'get_config_from_file';
 
