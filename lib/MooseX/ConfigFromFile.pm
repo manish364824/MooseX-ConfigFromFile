@@ -2,6 +2,7 @@ package MooseX::ConfigFromFile;
 
 use Moose::Role;
 use MooseX::Types::Path::Class qw( File );
+use Try::Tiny qw/ try /;
 
 our $VERSION   = '0.02';
 
@@ -26,10 +27,11 @@ sub new_with_config {
     }
     else {
         my $cfmeta = $class->meta->find_attribute_by_name('configfile');
-        $configfile = $cfmeta->default if $cfmeta->has_default;
+        $configfile = try { $class->configfile };
+        $configfile ||= $cfmeta->default if $cfmeta->has_default;
     }
 
-    if(defined $configfile) {
+    if (defined $configfile) {
         my $hash = $class->get_config_from_file($configfile);
 
         no warnings 'uninitialized';
@@ -82,7 +84,7 @@ MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a co
   with 'MooseX::SomeSpecificConfigRole';
 
   # optionally, default the configfile:
-  has +configfile ( default => '/tmp/foo.yaml' );
+  sub configfile { '/tmp/foo.yaml' }
 
   # ... insert your stuff here ...
 
