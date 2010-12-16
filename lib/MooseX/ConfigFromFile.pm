@@ -3,10 +3,10 @@ package MooseX::ConfigFromFile;
 use Moose::Role;
 use MooseX::Types::Path::Class qw( File );
 use Try::Tiny qw/ try /;
-
-our $VERSION   = '0.02';
-
 use Carp qw(croak);
+use namespace::autoclean;
+
+our $VERSION = '0.02';
 
 requires 'get_config_from_file';
 

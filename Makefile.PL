@@ -10,10 +10,9 @@ test_requires 'Test::Fatal';
 requires 'Moose'                      => '0.35';
 requires 'MooseX::Types::Path::Class' => '0.04';
 requires 'Try::Tiny';
+requires 'namespace::autoclean';
 
 # Rebuild README for maintainers
 system("pod2text lib/MooseX/ConfigFromFile.pm >README") if $Module::Install::AUTHOR;
 
-auto_provides;
-auto_install;
 WriteAll;
