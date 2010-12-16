@@ -5,7 +5,7 @@
 \.bak$
 ^MANIFEST\.SKIP$
 CVS
-\.svn
+\.git
 \.DS_Store
 cover_db
 \..*\.sw.?$
