@@ -9,10 +9,10 @@ SYNOPSIS
 
       package MooseX::SomeSpecificConfigRole;
       use Moose::Role;
-      
-  with 'MooseX::ConfigFromFile';
-      
-  use Some::ConfigFile::Loader ();
+  
+      with 'MooseX::ConfigFromFile';
+  
+      use Some::ConfigFile::Loader ();
 
       sub get_config_from_file {
         my ($class, $file) = @_;
