@@ -6,4 +6,5 @@ blib/
 MANIFEST
 Makefile.old
 MANIFEST.bak
+MooseX-ConfigFromFile*
 
