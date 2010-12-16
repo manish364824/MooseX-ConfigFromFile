@@ -12,6 +12,8 @@ requires 'MooseX::Types::Path::Class' => '0.04';
 requires 'Try::Tiny';
 requires 'namespace::autoclean';
 
+resources repository => 'git://git.moose.perl.org/MooseX-ConfigFromFile.git';
+
 # Rebuild README for maintainers
 system("pod2text lib/MooseX/ConfigFromFile.pm >README") if $Module::Install::AUTHOR;
 
