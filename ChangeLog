@@ -1,5 +1,9 @@
 Revision history for Perl extension MooseX::ConfigFromFile
 
+{{$NEXT}}
+    - Call the configfile attribute default sub if it is a sub, not just a
+      string, just like MooseX::Getopt does (RT#73325, Karen Etheridge)
+
 0.03 - Dec 18, 2010
     - The test suite now uses Test::Fatal instead of Test::Exception (Karen
       Etheridge).
