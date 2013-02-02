@@ -1,7 +1,7 @@
 package MooseX::ConfigFromFile;
 
 use Moose::Role;
-use MooseX::Types::Path::Class qw( File );
+use MooseX::Types::Path::Tiny 'Path';
 use Try::Tiny qw/ try /;
 use Carp qw(croak);
 use namespace::autoclean;
@@ -12,7 +12,7 @@ requires 'get_config_from_file';
 
 has configfile => (
     is => 'ro',
-    isa => File,
+    isa => Path,
     coerce => 1,
     predicate => 'has_configfile',
     do { try { require MooseX::Getopt; (traits => ['Getopt']) } },
@@ -127,8 +127,9 @@ during its normal C<new_with_options>.
 
 =head2 configfile
 
-This is a L<Path::Class::File> object which can be coerced from a regular pathname
-string.  This is the file your attributes are loaded from.  You can add a default
+This is a L<Path::Tiny> object which can be coerced from a regular pathname
+string or any object that supports stringification.
+This is the file your attributes are loaded from.  You can add a default
 configfile in the consuming class and it will be honored at the appropriate time
 (note that a simple sub declaration is not sufficient, as there is already a
 sub by that name being added by Moose as the attribute reader)
