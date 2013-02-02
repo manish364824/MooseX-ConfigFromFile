@@ -6,6 +6,9 @@ all_from 'lib/MooseX/ConfigFromFile.pm';
 
 test_requires 'Test::More' => '0.42';
 test_requires 'Test::Fatal';
+test_requires 'Test::Requires';
+test_requires 'Test::NoWarnings'      => '1.04';
+test_requires 'Test::Without::Module';
 
 requires 'Moose'                      => '0.35';
 requires 'MooseX::Types::Path::Class' => '0.04';

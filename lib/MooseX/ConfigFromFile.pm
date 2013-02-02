@@ -15,6 +15,7 @@ has configfile => (
     isa => File,
     coerce => 1,
     predicate => 'has_configfile',
+    do { try { require MooseX::Getopt; (traits => ['Getopt']) } },
 );
 
 sub new_with_config {
@@ -137,6 +138,10 @@ sub by that name being added by Moose as the attribute reader)
 Note that you can alternately just provide a C<configfile> method which returns
 the config file when called - this will be used in preference to the default of
 the attribute.
+
+If you have L<MooseX::Getopt> installed, this attribute will also have the
+C<Getopt> trait supplied, so you can also set the configfile from the
+command line.
 
 =head1 Class Methods
 
