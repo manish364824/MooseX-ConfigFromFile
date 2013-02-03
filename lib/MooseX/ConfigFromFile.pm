@@ -26,9 +26,16 @@ sub new_with_config {
         $configfile = $opts{configfile}
     }
     else {
-        my $cfmeta = $class->meta->find_attribute_by_name('configfile');
+        # This would only succeed if the consumer had defined a new configfile
+        # sub to override the generated reader
         $configfile = try { $class->configfile };
+
+        # this is gross, but since a lot of users have swapped in their own
+        # default subs, we have to keep calling it rather than calling a
+        # builder sub directly - and it might not even be a coderef either
+        my $cfmeta = $class->meta->find_attribute_by_name('configfile');
         $configfile ||= $cfmeta->default if $cfmeta->has_default;
+
         if (ref $configfile eq 'CODE') {
             $configfile = $configfile->($class);
         }
@@ -87,7 +94,7 @@ MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a co
   with 'MooseX::SomeSpecificConfigRole';
 
   # optionally, default the configfile:
-  sub configfile { '/tmp/foo.yaml' }
+  around configfile => sub { '/tmp/foo.yaml' };
 
   # ... insert your stuff here ...
 
@@ -121,9 +128,11 @@ during its normal C<new_with_options>.
 
 This is a L<Path::Class::File> object which can be coerced from a regular pathname
 string.  This is the file your attributes are loaded from.  You can add a default
-configfile in the class using the role and it will be honored at the appropriate time:
+configfile in the consuming class and it will be honored at the appropriate time
+(note that a simple sub declaration is not sufficient, as there is already a
+sub by that name being added by Moose as the attribute reader)
 
-  has +configfile ( default => '/etc/myapp.yaml' );
+  around configfile => sub { '/etc/myapp.yaml' };
 
 Note that you can alternately just provide a C<configfile> method which returns
 the config file when called - this will be used in preference to the default of

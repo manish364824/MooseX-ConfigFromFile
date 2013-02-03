@@ -1,5 +1,10 @@
 Revision history for Perl extension MooseX::ConfigFromFile
 
+0.05
+    - documentation corrected to demostrate how to properly override the
+    configfile method to provide a default from the consuming class, without
+    having to redefine the attribute itself
+
 0.04 - Dec 17, 2011
     - Call the configfile attribute default sub if it is a sub, not just a
       string, just like MooseX::Getopt does (RT#73325, Karen Etheridge)
