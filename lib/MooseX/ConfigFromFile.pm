@@ -173,7 +173,7 @@ Brandon L. Black, E<lt>blblack@gmail.comE<gt>
 
 =over
 
-=item Tomas Doran C<< <bobtfish@bobtfish.net> >> (current maintainer).
+=item Tomas Doran
 
 =item Karen Etheridge
 
