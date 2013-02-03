@@ -1,8 +1,9 @@
-#!/usr/bin/env perl 
 use strict;
-use Test::More;
-use Test::Fatal;
+use warnings;
 
+use Test::More tests => 7;
+use Test::NoWarnings 1.04 ':early';
+use Test::Fatal;
 
 my %config_from_file_args;
 {
@@ -53,5 +54,3 @@ is($config_from_file_args{B}, 'bar', 'B configfile attr default sub is called');
 is(exception { C->new_with_config() }, undef, 'C->new_with_config lives');
 is($config_from_file_args{C}, '/dir/C', 'C configfile attr default sub is called, with classname');
 
-
-done_testing();

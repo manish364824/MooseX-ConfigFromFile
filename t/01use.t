@@ -1,9 +1,8 @@
-#!/usr/bin/perl
-
 use strict;
 use warnings;
 
-use Test::More tests => 1;
+use Test::More tests => 2;
+use Test::NoWarnings 1.04 ':early';
 
 BEGIN {
     use_ok('MooseX::ConfigFromFile');
