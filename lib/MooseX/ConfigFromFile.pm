@@ -163,7 +163,7 @@ a hashref of arguments to pass to C<new()> which are sourced from the configfile
 
 =head1 COPYRIGHT
 
-Copyright (c) 2007 - 2009 the MooseX::ConfigFromFile "AUTHOR" and "CONTRIBUTORS" as listed below.
+Copyright (c) - the MooseX::ConfigFromFile "AUTHOR" and "CONTRIBUTORS" as listed below.
 
 =head1 AUTHOR
 
