@@ -27,7 +27,7 @@ sub new_with_config {
     }
     else {
         my $cfmeta = $class->meta->find_attribute_by_name('configfile');
-        $configfile = try { to_File($class->configfile) };
+        $configfile = try { $class->configfile };
         $configfile ||= $cfmeta->default if $cfmeta->has_default;
         if (ref $configfile eq 'CODE') {
             $configfile = &$configfile($class);
