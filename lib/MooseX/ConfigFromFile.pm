@@ -30,7 +30,7 @@ sub new_with_config {
         $configfile = try { $class->configfile };
         $configfile ||= $cfmeta->default if $cfmeta->has_default;
         if (ref $configfile eq 'CODE') {
-            $configfile = &$configfile($class);
+            $configfile = $configfile->($class);
         }
     }
 
