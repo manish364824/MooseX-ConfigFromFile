@@ -9,3 +9,5 @@ Makefile.old
 MANIFEST.bak
 MooseX-ConfigFromFile*
 /TODO
+/LICENSE
+/README
