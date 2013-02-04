@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 
+use Test::Requires 'MooseX::SimpleConfig';      # skip all if not reuqired
 use Test::More tests => 10;
 use Test::Fatal;
 use Test::Deep '!blessed';

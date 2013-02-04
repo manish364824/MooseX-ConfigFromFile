@@ -1,5 +1,7 @@
 Revision history for Perl extension MooseX::ConfigFromFile
 
+    - fixed tests to not load optional dependencies
+
 0.06  2013-02-03 (Karen Etheridge)
     - the configfile attribute is now a Path::Tiny, not a Path::Class
     (coercions from strings are still supported, and now also from any other

@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 
+use Test::Requires 'MooseX::SimpleConfig';      # skip all if not reuqired
 use Test::More tests => 5;
 use Test::NoWarnings 1.04 ':early';
 use Path::Tiny 'path';
