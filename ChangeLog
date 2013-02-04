@@ -1,5 +1,6 @@
 Revision history for Perl extension MooseX::ConfigFromFile
 
+0.07  2013-02-04 (Karen Etheridge)
     - fixed tests to not load optional dependencies
 
 0.06  2013-02-03 (Karen Etheridge)
