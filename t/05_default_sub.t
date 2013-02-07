@@ -2,7 +2,7 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::Requires 'MooseX::SimpleConfig';      # skip all if not reuqired
-use Test::More tests => 10;
+use Test::More tests => 11;
 use Test::Fatal;
 use Test::Deep '!blessed';
 use Test::NoWarnings 1.04 ':early';
@@ -17,13 +17,19 @@ my %default_sub;
     package Generic;
     use Moose;
     with 'MooseX::SimpleConfig';
-    sub get_config_from_file { }
+    sub get_config_from_file
+    {
+        my ($class, $file) = @_;
+        $loaded_file{$file}++;
+        +{}
+    }
 }
 
 is(
     exception {
         my $obj = Generic->new_with_config;
         is($obj->configfile, undef, 'no configfile set');
+        cmp_deeply(\%loaded_file, {}, 'no files loaded');
     },
     undef,
     'no exceptions',
@@ -35,13 +41,7 @@ is(
 {
     package OverriddenDefault;
     use Moose;
-    with 'MooseX::SimpleConfig';
-    sub get_config_from_file
-    {
-        my ($class, $file) = @_;
-        $loaded_file{$file}++;
-        +{}
-    }
+    extends 'Generic';
     has '+configfile' => (
         default => 'OverriddenDefault file',
     );
@@ -62,13 +62,7 @@ is(
 {
     package OverriddenMethod;
     use Moose;
-    with 'MooseX::SimpleConfig';
-    sub get_config_from_file {
-        my ($class, $file) = @_;
-        $loaded_file{$file}++;
-        +{}
-    }
-
+    extends 'Generic';
     around configfile => sub {
         my $class = blessed($_[1]) || $_[1];
         $default_sub{$class}++;
