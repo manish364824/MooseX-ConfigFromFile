@@ -1,5 +1,7 @@
 Revision history for Perl extension MooseX::ConfigFromFile
 
+    - allow configfiles called "0"
+
 0.07 - 2013-02-04 (Karen Etheridge)
     - fixed tests to not load optional dependencies
 

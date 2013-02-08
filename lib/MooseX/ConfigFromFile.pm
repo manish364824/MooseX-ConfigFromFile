@@ -35,7 +35,7 @@ sub new_with_config {
         # default subs, we have to keep calling it rather than calling a
         # builder sub directly - and it might not even be a coderef either
         my $cfmeta = $class->meta->find_attribute_by_name('configfile');
-        $configfile ||= $cfmeta->default if $cfmeta->has_default;
+        $configfile = $cfmeta->default if not defined $configfile and $cfmeta->has_default;
 
         if (ref $configfile eq 'CODE') {
             $configfile = $configfile->($class);
