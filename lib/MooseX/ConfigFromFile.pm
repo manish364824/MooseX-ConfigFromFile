@@ -38,6 +38,9 @@ sub new_with_config {
         if (ref $configfile eq 'CODE') {
             $configfile = $configfile->($class);
         }
+
+        my $init_arg = $cfmeta->init_arg;
+        $opts{$init_arg} = $configfile if defined $configfile and defined $init_arg;
     }
 
     if (defined $configfile) {
