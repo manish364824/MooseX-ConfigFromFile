@@ -1,5 +1,6 @@
-Revision history for Perl extension MooseX::ConfigFromFile
+Revision history for {{$dist->name}}
 
+{{$NEXT}}
     - allow configfiles called "0"
 
 0.07 - 2013-02-04 (Karen Etheridge)
