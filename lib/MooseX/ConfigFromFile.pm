@@ -71,9 +71,9 @@ MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a co
 
   package MooseX::SomeSpecificConfigRole;
   use Moose::Role;
-  
+
   with 'MooseX::ConfigFromFile';
-  
+
   use Some::ConfigFile::Loader ();
 
   sub get_config_from_file {
@@ -105,7 +105,7 @@ MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a co
 
 =head1 DESCRIPTION
 
-This is an abstract role which provides an alternate constructor for creating 
+This is an abstract role which provides an alternate constructor for creating
 objects using parameters passed in from a configuration file.  The
 actual implementation of reading the configuration file is left to
 concrete sub-roles.
