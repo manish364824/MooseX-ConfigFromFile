@@ -1,36 +1,37 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-    - allow configfiles called "0"
+          - allow configfiles called "0"
 
-0.07 - 2013-02-04 (Karen Etheridge)
-    - fixed tests to not load optional dependencies
+0.07      2013-02-04 (Karen Etheridge)
+          - fixed tests to not load optional dependencies
 
-0.06 - 2013-02-03 (Karen Etheridge)
-    - the configfile attribute is now a Path::Tiny, not a Path::Class
-    (coercions from strings are still supported, and now also from any other
-    type that has a string coercion).
+0.06      2013-02-03 (Karen Etheridge)
+          - the configfile attribute is now a Path::Tiny, not a Path::Class
+            (coercions from strings are still supported, and now also from any
+            other type that has a string coercion).
 
-0.05 - 2013-02-03 (Karen Etheridge)
-    - documentation corrected to demostrate how to properly override the
-    configfile method to provide a default from the consuming class, without
-    having to redefine the attribute itself
-    - if MooseX::Getopt is installed, the configfile attribute has the Getopt
-    trait applied
+0.05      2013-02-03 (Karen Etheridge)
+          - documentation corrected to demostrate how to properly override the
+            configfile method to provide a default from the consuming class,
+            without having to redefine the attribute itself
+          - if MooseX::Getopt is installed, the configfile attribute has the
+            Getopt trait applied
 
-0.04 - Dec 17, 2011
-    - Call the configfile attribute default sub if it is a sub, not just a
-      string, just like MooseX::Getopt does (RT#73325, Karen Etheridge)
+0.04      2011-12-17
+          - Call the configfile attribute default sub if it is a sub, not just
+            a string, just like MooseX::Getopt does (RT#73325, Karen Etheridge)
 
-0.03 - Dec 18, 2010
-    - The test suite now uses Test::Fatal instead of Test::Exception (Karen
-      Etheridge).
-    - Fix bug reported by Strayph in #moose with inheritance RT#63624 (perigrin)
-    - Add repository metadata
-    - Fix RT#57023, RT#49369.
+0.03      2010-12-18
+          - The test suite now uses Test::Fatal instead of Test::Exception
+            (Karen Etheridge).
+          - Fix bug reported by Strayph in #moose with inheritance RT#63624
+            (perigrin)
+          - Add repository metadata
+          - Fix RT#57023, RT#49369.
 
-0.02 - Jan 23, 2008
-    - Honor any default supplied for the configfile attribute
+0.02      2008-01-23
+          - Honor any default supplied for the configfile attribute
 
-0.01 - Dec 18, 2007
-    - Initial release
+0.01      2007-12-18
+          - Initial release
