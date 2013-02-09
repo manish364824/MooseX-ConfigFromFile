@@ -2,13 +2,14 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::Requires 'MooseX::SimpleConfig';      # skip all if not reuqired
-use Test::More tests => 19;
+use Test::More tests => 33;
 use Test::Fatal;
 use Test::Deep '!blessed';
 use Test::NoWarnings 1.04 ':early';
 use Scalar::Util 'blessed';
 
 my %loaded_file;
+my %configfile_sub;
 my %constructor_args;
 
 
@@ -31,6 +32,7 @@ my %constructor_args;
     sub __my_configfile
     {
         my $class = blessed($_[0]) || $_[0];
+        $configfile_sub{$class}++;
         $class . ' file'
     }
 }
@@ -72,6 +74,27 @@ is(
     'no exceptions',
 );
 
+{
+    package OverriddenDefaultMethod;
+    use Moose;
+    extends 'Generic';
+    has '+configfile' => (
+        default => sub { shift->__my_configfile },
+    );
+}
+
+is(
+    exception {
+        my $obj = OverriddenDefaultMethod->new_with_config;
+        is($obj->configfile, blessed($obj) . ' file', 'configfile set via overridden default');
+        is($configfile_sub{blessed($obj)}, 1, 'configfile was calculated just once');
+        is($loaded_file{blessed($obj) . ' file'}, 1, 'correct file was loaded from');
+    },
+    undef,
+    'no exceptions',
+);
+
+
 # legacy usecase, and configfile init_arg has been changed
 {
     package OverriddenDefaultAndChangedName;
@@ -110,6 +133,8 @@ is(
     exception {
         my $obj = OverriddenMethod->new_with_config;
         is($obj->configfile, blessed($obj) . ' file', 'configfile set via overridden sub');
+        # this is not fixable - the reader method has been shadowed
+        # is($configfile_sub{blessed($obj)}, 1, 'configfile was calculated just once');
         is($loaded_file{blessed($obj) . ' file'}, 1, 'correct file was loaded from');
     },
     undef,
@@ -137,6 +162,60 @@ is(
             {  my_configfile => blessed($obj) . ' file' },
             'correct constructor args passed',
         );
+        # this is not fixable - the reader method has been shadowed
+        # is($configfile_sub{blessed($obj)}, 1, 'configfile was calculated just once');
+        is($loaded_file{blessed($obj) . ' file'}, 1, 'correct file was loaded from');
+    },
+    undef,
+    'no exceptions',
+);
+
+# newly-supported overridable method for configfile default
+{
+    package WrapperSub;
+    use Moose;
+    extends 'Generic';
+    sub _get_default_configfile { shift->__my_configfile }
+}
+
+is(
+    exception {
+        my $obj = WrapperSub->new_with_config;
+        is($obj->configfile, blessed($obj) . ' file', 'configfile set via new sub');
+        cmp_deeply(
+            $constructor_args{blessed($obj)},
+            {  configfile => blessed($obj) . ' file' },
+            'correct constructor args passed',
+        );
+        is($configfile_sub{blessed($obj)}, 1, 'configfile was calculated just once');
+        is($loaded_file{blessed($obj) . ' file'}, 1, 'correct file was loaded from');
+    },
+    undef,
+    'no exceptions',
+);
+
+# newly-supported overridable method for configfile default, and configfile
+# init_arg has been changed
+{
+    package WrapperSubAndChangedName;
+    use Moose;
+    extends 'Generic';
+    has '+configfile' => (
+        init_arg => 'my_configfile',
+    );
+    sub _get_default_configfile { shift->__my_configfile }
+}
+
+is(
+    exception {
+        my $obj = WrapperSubAndChangedName->new_with_config;
+        is($obj->configfile, blessed($obj) . ' file', 'configfile set via overridden sub');
+        cmp_deeply(
+            $constructor_args{blessed($obj)},
+            {  my_configfile => blessed($obj) . ' file' },
+            'correct constructor args passed',
+        );
+        is($configfile_sub{blessed($obj)}, 1, 'configfile was calculated just once');
         is($loaded_file{blessed($obj) . ' file'}, 1, 'correct file was loaded from');
     },
     undef,

@@ -3,6 +3,10 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
           - allow configfiles called "0"
           - configfile value now passed through to new()
+          - new _get_default_configfile method added, which consumers can
+            override to provide a default value without having to redefine the
+            attribute itself (via RT#79746) -- PLEASE READ THE DOCUMENTATION
+            if you override the configfile attribute!
 
 0.07      2013-02-04 (Karen Etheridge)
           - fixed tests to not load optional dependencies
