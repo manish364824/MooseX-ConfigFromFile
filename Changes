@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.08      2013-02-09 16:24:27 PST-0800 (Karen Etheridge)
           - allow configfiles called "0"
           - configfile value now passed through to new()
           - new _get_default_configfile method added, which consumers can
