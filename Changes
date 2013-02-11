@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - removed prereqs which are only used for optional tests
 
 0.08      2013-02-09 16:24:27 PST-0800 (Karen Etheridge)
           - allow configfiles called "0"
