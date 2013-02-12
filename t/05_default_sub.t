@@ -1,7 +1,6 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::Requires 'MooseX::SimpleConfig';      # skip all if not reuqired
 use Test::More tests => 33;
 use Test::Fatal;
 use Test::Deep '!blessed';
@@ -17,7 +16,7 @@ my %constructor_args;
 {
     package Generic;
     use Moose;
-    with 'MooseX::SimpleConfig';
+    with 'MooseX::ConfigFromFile';
     sub get_config_from_file
     {
         my ($class, $file) = @_;
