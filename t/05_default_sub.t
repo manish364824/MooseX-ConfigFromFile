@@ -171,7 +171,7 @@ is(
 
 # newly-supported overridable method for configfile default
 {
-    package WrapperSub;
+    package NewSub;
     use Moose;
     extends 'Generic';
     sub _get_default_configfile { shift->__my_configfile }
@@ -179,7 +179,7 @@ is(
 
 is(
     exception {
-        my $obj = WrapperSub->new_with_config;
+        my $obj = NewSub->new_with_config;
         is($obj->configfile, blessed($obj) . ' file', 'configfile set via new sub');
         cmp_deeply(
             $constructor_args{blessed($obj)},
@@ -196,7 +196,7 @@ is(
 # newly-supported overridable method for configfile default, and configfile
 # init_arg has been changed
 {
-    package WrapperSubAndChangedName;
+    package NewSubAndChangedName;
     use Moose;
     extends 'Generic';
     has '+configfile' => (
@@ -207,7 +207,7 @@ is(
 
 is(
     exception {
-        my $obj = WrapperSubAndChangedName->new_with_config;
+        my $obj = NewSubAndChangedName->new_with_config;
         is($obj->configfile, blessed($obj) . ' file', 'configfile set via overridden sub');
         cmp_deeply(
             $constructor_args{blessed($obj)},
