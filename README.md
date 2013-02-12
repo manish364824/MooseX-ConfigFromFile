@@ -96,8 +96,8 @@ a hashref of arguments to pass to `new()` which are sourced from the configfile.
 
 ## \_get\_default\_configfile
 
-This class method returns nothing by default, but can and should be redefined
-in a consuming class to return the default value of the configfile (if not
+This class method is not implemented in this role, but can and should be defined
+in a consuming class or role to return the default value of the configfile (if not
 passed into the constructor explicitly).
 
 # COPYRIGHT

@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.10      2013-02-12 13:17:44 PST-0800 (Karen Etheridge)
           - allow clean composition into a role, without requiring an -exclude
 
 0.09      2013-02-11 09:35:50 PST-0800 (Karen Etheridge)
