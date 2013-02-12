@@ -11,3 +11,6 @@
 /MooseX-ConfigFromFile*
 /TODO
 /LICENSE
+/.build
+!.gitignore
+*.sw?
