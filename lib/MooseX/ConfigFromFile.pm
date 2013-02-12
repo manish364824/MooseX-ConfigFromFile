@@ -9,11 +9,6 @@ use namespace::autoclean;
 
 requires 'get_config_from_file';
 
-# overridable in consuming class or role to provide a default value
-# This is called before instantiation, so it must be a class method,
-# and not depend on any other attributes
-sub _get_default_configfile { }
-
 has configfile => (
     is => 'ro',
     isa => Path|Undef,
@@ -23,7 +18,10 @@ has configfile => (
     lazy => 1,
     # it sucks that we have to do this rather than using a builder, but some old code
     # simply swaps in a new default sub into the attr definition
-    default => sub { shift->_get_default_configfile },
+    default => sub {
+        my $class = shift;
+        $class->_get_default_configfile if $class->can('_get_default_configfile');
+    },
 );
 
 sub new_with_config {
@@ -170,8 +168,8 @@ a hashref of arguments to pass to C<new()> which are sourced from the configfile
 
 =head2 _get_default_configfile
 
-This class method returns nothing by default, but can and should be redefined
-in a consuming class to return the default value of the configfile (if not
+This class method is not implemented in this role, but can and should be defined
+in a consuming class or role to return the default value of the configfile (if not
 passed into the constructor explicitly).
 
 =head1 COPYRIGHT
