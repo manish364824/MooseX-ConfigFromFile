@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.11      2013-06-23 09:22:04 PDT-0700 (Karen Etheridge)
           - bump prereq version for MooseX::Types::Path::Tiny to ensure a
             broken version is not installed
 
