@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - bump prereq version for MooseX::Types::Path::Tiny to ensure a
+            broken version is not installed
 
 0.10      2013-02-12 13:17:44 PST-0800 (Karen Etheridge)
           - allow clean composition into a role, without requiring an -exclude
