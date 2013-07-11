@@ -4,7 +4,7 @@ use warnings FATAL => 'all';
 use Test::More tests => 49;
 use Test::Fatal;
 use Test::Deep '!blessed';
-use Test::NoWarnings 1.04 ':early';
+use Test::Warnings;
 use Scalar::Util 'blessed';
 
 my %loaded_file;

@@ -3,7 +3,7 @@ use warnings FATAL => 'all';
 
 use Test::Requires 'MooseX::Getopt';    # skip all if not installed
 use Test::More tests => 3;
-use Test::NoWarnings 1.04 ':early';
+use Test::Warnings;
 
 {
     package Foo::Options;
