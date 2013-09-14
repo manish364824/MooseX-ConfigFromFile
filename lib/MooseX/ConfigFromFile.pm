@@ -1,7 +1,8 @@
 package MooseX::ConfigFromFile;
+# ABSTRACT: An abstract Moose role for setting attributes from a configfile
 
 use Moose::Role;
-use MooseX::Types::Path::Tiny 'Path';
+use MooseX::Types::Path::Tiny 0.005 'Path';
 use MooseX::Types::Moose 'Undef';
 use Try::Tiny;
 use Carp qw(croak);
@@ -71,10 +72,6 @@ __END__
 
 =pod
 
-=head1 NAME
-
-MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a configfile
-
 =head1 SYNOPSIS
 
   ########
@@ -126,6 +123,8 @@ It declares an attribute C<configfile> and a class method C<new_with_config>,
 and requires that concrete roles derived from it implement the class method
 C<get_config_from_file>.
 
+=for stopwords configfile
+
 Attributes specified directly as arguments to C<new_with_config> supersede those
 in the configfile.
 
@@ -171,32 +170,5 @@ a hashref of arguments to pass to C<new()> which are sourced from the configfile
 This class method is not implemented in this role, but can and should be defined
 in a consuming class or role to return the default value of the configfile (if not
 passed into the constructor explicitly).
-
-=head1 COPYRIGHT
-
-Copyright (c) - the MooseX::ConfigFromFile "AUTHOR" and "CONTRIBUTORS" as listed below.
-
-=head1 AUTHOR
-
-Brandon L. Black, E<lt>blblack@gmail.comE<gt>
-
-=head1 CONTRIBUTORS
-
-=over
-
-=item Tomas Doran
-
-=item Karen Etheridge
-
-=item Chris Prather
-
-=item Zbigniew Lukasiak
-
-=back
-
-=head1 LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
 
 =cut
