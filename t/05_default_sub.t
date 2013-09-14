@@ -1,10 +1,10 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More tests => 49;
+use Test::More;
 use Test::Fatal;
 use Test::Deep '!blessed';
-use Test::Warnings;
+use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Scalar::Util 'blessed';
 
 my %loaded_file;
@@ -359,3 +359,4 @@ is(
     'no exceptions',
 );
 
+done_testing;

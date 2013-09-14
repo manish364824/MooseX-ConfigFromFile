@@ -1,8 +1,8 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More tests => 2;
-use Test::Warnings;
+use Test::More;
+use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
 use Test::Without::Module 'MooseX::Getopt';
 
@@ -19,3 +19,4 @@ ok(
     'the Getopt attr trait is not added if not installed',
 );
 
+done_testing;

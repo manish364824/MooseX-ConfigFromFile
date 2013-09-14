@@ -1,8 +1,8 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More tests => 7;
-use Test::Warnings;
+use Test::More;
+use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 use Test::Fatal;
 
 my %config_from_file_args;
@@ -54,3 +54,4 @@ is($config_from_file_args{B}, 'bar', 'B configfile attr default sub is called');
 is(exception { C->new_with_config() }, undef, 'C->new_with_config lives');
 is($config_from_file_args{C}, '/dir/C', 'C configfile attr default sub is called, with classname');
 
+done_testing;

@@ -2,8 +2,8 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::Requires 'MooseX::Getopt';    # skip all if not installed
-use Test::More tests => 3;
-use Test::Warnings;
+use Test::More;
+use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
 {
     package Foo::Options;
@@ -31,3 +31,4 @@ ok(
     'when MooseX::Getopt is loaded, the Getopt attr trait is still added',
 );
 
+done_testing;
