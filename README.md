@@ -2,6 +2,10 @@
 
 MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a configfile
 
+# VERSION
+
+version 0.12
+
 # SYNOPSIS
 
     ########
@@ -100,22 +104,21 @@ This class method is not implemented in this role, but can and should be defined
 in a consuming class or role to return the default value of the configfile (if not
 passed into the constructor explicitly).
 
-# COPYRIGHT
-
-Copyright (c) - the MooseX::ConfigFromFile "AUTHOR" and "CONTRIBUTORS" as listed below.
-
 # AUTHOR
 
 Brandon L. Black, <blblack@gmail.com>
 
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Brandon L. Black.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 # CONTRIBUTORS
 
-- Tomas Doran
-- Karen Etheridge
-- Chris Prather
-- Zbigniew Lukasiak
-
-# LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+- Brandon L Black <blblack@gmail.com>
+- Chris Prather <chris@prather.org>
+- Karen Etheridge <ether@cpan.org>
+- Tomas Doran <bobtfish@bobtfish.net>
+- Yuval Kogman <nothingmuch@woobling.org>

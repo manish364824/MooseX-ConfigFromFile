@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.12      2013-09-14 16:37:49Z (Karen Etheridge)
           - warnings tests bypassed during installation
           - repository migrated from shadowcat to the github moose organization
 
