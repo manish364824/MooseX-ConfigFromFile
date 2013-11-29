@@ -241,7 +241,6 @@ is(
     with 'GenericRole';
     use MooseX::Types::Path::Tiny 'Path';
     use MooseX::Types::Moose 'Undef';
-    use Try::Tiny;
     has configfile => (
         is => 'ro',
         isa => Path|Undef,

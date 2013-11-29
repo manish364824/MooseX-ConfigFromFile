@@ -4,7 +4,6 @@ package MooseX::ConfigFromFile;
 use Moose::Role;
 use MooseX::Types::Path::Tiny 0.005 'Path';
 use MooseX::Types::Moose 'Undef';
-use Try::Tiny;
 use Carp qw(croak);
 use namespace::autoclean;
 
@@ -15,7 +14,7 @@ has configfile => (
     isa => Path|Undef,
     coerce => 1,
     predicate => 'has_configfile',
-    do { try { require MooseX::Getopt; (traits => ['Getopt']) } },
+    eval "require MooseX::Getopt; 1" ? (traits => ['Getopt']) : (),
     lazy => 1,
     # it sucks that we have to do this rather than using a builder, but some old code
     # simply swaps in a new default sub into the attr definition
@@ -37,7 +36,7 @@ sub new_with_config {
         # This would only succeed if the consumer had defined a new configfile
         # sub to override the generated reader - as suggested in old
         # documentation -- or if $class is an instance not a class name
-        $configfile = try { $class->configfile };
+        $configfile = eval { $class->configfile };
 
         # this is gross, but since a lot of users have swapped in their own
         # default subs, we have to keep calling it rather than calling a
