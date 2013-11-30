@@ -4,7 +4,7 @@ MooseX::ConfigFromFile - An abstract Moose role for setting attributes from a co
 
 # VERSION
 
-version 0.12
+version 0.13
 
 # SYNOPSIS
 
@@ -61,7 +61,7 @@ and requires that concrete roles derived from it implement the class method
 Attributes specified directly as arguments to `new_with_config` supersede those
 in the configfile.
 
-[MooseX::Getopt](http://search.cpan.org/perldoc?MooseX::Getopt) knows about this abstract role, and will use it if available
+[MooseX::Getopt](https://metacpan.org/pod/MooseX::Getopt) knows about this abstract role, and will use it if available
 to load attributes from the file specified by the command line flag `--configfile`
 during its normal `new_with_options`.
 
@@ -69,13 +69,13 @@ during its normal `new_with_options`.
 
 ## configfile
 
-This is a [Path::Tiny](http://search.cpan.org/perldoc?Path::Tiny) object which can be coerced from a regular path
+This is a [Path::Tiny](https://metacpan.org/pod/Path::Tiny) object which can be coerced from a regular path
 string or any object that supports stringification.
 This is the file your attributes are loaded from.  You can add a default
 configfile in the consuming class and it will be honored at the appropriate
-time; see below at ["\_get\_default\_configfile"](#\_get\_default\_configfile).
+time; see below at ["_get_default_configfile"](#_get_default_configfile).
 
-If you have [MooseX::Getopt](http://search.cpan.org/perldoc?MooseX::Getopt) installed, this attribute will also have the
+If you have [MooseX::Getopt](https://metacpan.org/pod/MooseX::Getopt) installed, this attribute will also have the
 `Getopt` trait supplied, so you can also set the configfile from the
 command line.
 
@@ -84,7 +84,7 @@ command line.
 ## new\_with\_config
 
 This is an alternate constructor, which knows to look for the `configfile` option
-in its arguments and use that to set attributes.  It is much like [MooseX::Getopts](http://search.cpan.org/perldoc?MooseX::Getopts)'s
+in its arguments and use that to set attributes.  It is much like [MooseX::Getopts](https://metacpan.org/pod/MooseX::Getopts)'s
 `new_with_options`.  Example:
 
     my $foo = SomeClass->new_with_config(configfile => '/etc/foo.yaml');
