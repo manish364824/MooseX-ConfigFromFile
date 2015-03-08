@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 use Test::Requires 'MooseX::Getopt';    # skip all if not installed
 use Test::More;
