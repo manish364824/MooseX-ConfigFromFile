@@ -71,6 +71,9 @@ __END__
 
 =pod
 
+=for :header
+=for stopwords configfile
+
 =head1 SYNOPSIS
 
   ########
@@ -121,8 +124,6 @@ concrete sub-roles.
 It declares an attribute C<configfile> and a class method C<new_with_config>,
 and requires that concrete roles derived from it implement the class method
 C<get_config_from_file>.
-
-=for stopwords configfile
 
 Attributes specified directly as arguments to C<new_with_config> supersede those
 in the configfile.
