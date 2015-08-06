@@ -1,4 +1,6 @@
 /.ackrc
 /.build/
-!.gitignore
-/MooseX-ConfigFromFile*
+!/.gitignore
+/.latest
+/MooseX-ConfigFromFile-*/
+/MooseX-ConfigFromFile-*.tar.gz
