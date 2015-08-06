@@ -1,6 +1,8 @@
 package MooseX::ConfigFromFile;
 # ABSTRACT: An abstract Moose role for setting attributes from a configfile
 
+our $VERSION = '0.14';
+
 use Moose::Role;
 use MooseX::Types::Path::Tiny 0.005 'Path';
 use MooseX::Types::Moose 'Undef';
