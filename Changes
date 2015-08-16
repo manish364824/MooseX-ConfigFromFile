@@ -1,6 +1,6 @@
 Revision history for MooseX-ConfigFromFile
 
-{{$NEXT}}
+0.14      2015-08-16 03:11:52Z
           - update some distribution tooling
 
 0.13      2013-11-30 16:47:36Z
