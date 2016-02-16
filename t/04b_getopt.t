@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Test::Requires 'MooseX::Getopt';    # skip all if not installed
-use Test::More;
+use Test::More 0.88;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
 {
