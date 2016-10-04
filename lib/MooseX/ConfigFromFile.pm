@@ -106,7 +106,7 @@ __END__
   with 'MooseX::SomeSpecificConfigRole';
 
   # optionally, default the configfile:
-  sub _get_default_configfile { '/tmp/foo.yaml' }
+  sub _get_default_configfile { $ENV{TMPDIR} . '/foo.yaml' }
 
   # ... insert your stuff here ...
 
