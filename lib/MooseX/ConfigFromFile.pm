@@ -16,7 +16,7 @@ has configfile => (
     isa => Path|Undef,
     coerce => 1,
     predicate => 'has_configfile',
-    eval "require MooseX::Getopt; 1" ? (traits => ['Getopt']) : (),
+    eval { require MooseX::Getopt; 1 } ? (traits => ['Getopt']) : (),
     lazy => 1,
     # it sucks that we have to do this rather than using a builder, but some old code
     # simply swaps in a new default sub into the attr definition
