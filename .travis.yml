@@ -4,6 +4,13 @@ addons:
       - aspell
       - aspell-en
 language: perl
+
+arch:
+ - amd64
+ - ppc64le
+ 
+
+ 
 perl:
   - blead       # builds perl from git
   - dev         # latest point release
@@ -18,6 +25,21 @@ perl:
   - "5.12"
   - "5.10"
   - "5.8"
+  
+  
+#jobs excuded from the ppc64le arch
+jobs:
+ exclude:
+   - arch: ppc64le
+     perl: dev
+   - arch: ppc64le
+     perl: 5.12
+   - arch: ppc64le
+     perl: 5.10
+   - arch: ppc64le
+     perl: 5.8
+
+
 env:
   global:
     - AUTHOR_TESTING=1
